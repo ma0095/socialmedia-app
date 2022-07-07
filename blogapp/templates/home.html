@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+
+
+{%block body_block%}
+
+<div class="row mt-lg-5">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <h1>WELCOME {{request.user}}</h1>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <form action="" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="post">
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+{%for blog in blogs%}
+<div class="row border mt-3">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <p>{{blog.title}}</p>
+        {%if blog.image%}
+        <img src="{{blog.image.url}}" class="img-fluid" alt="">
+        <p>posted by : {{blog.author}}</p>
+        <p>created at : {{blog.posted_date}}</p>
+
+        <form action="{%url 'add-comment' blog.id%}" method="post">
+            {%csrf_token%}
+            {{comment_form.as_p}}
+            <input type="submit">
+        </form>
+        {%endif%}
+    </div>
+    <div class="col-4"></div>
+
+</div>
+{%endfor%}
+
+{%endblock%}

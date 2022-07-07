@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg bg-primary" class=text-center">
+<div class="container-fluid">
+
+<div style="height:50%;width:10%">
+    <a class="navbar-brand text-"  href="{%url 'view-profile'%}">
+    {%if request.user.users.profile_pic%}
+
+
+            <img src="{{request.user.users.profile_pic.url}}" class="img-thumbnail" alt="" style="width:50%;height:5%">
+
+
+
+    {%endif%}
+</a>
+
+ </div>
+
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{%url 'home'%}">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Manage profile
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          {%if request.user.users%}
+
+        <li><a class="dropdown-item" href="{%url 'view-profile'%}">ViewMyProfile</a></li>
+          {%else %}
+
+
+        <li><a class="dropdown-item" href="#">AddProfile</a></li>
+
+          {%endif%}
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{%url 'password-reset'%}">Reset Password</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">Disabled</a>
+    </li>
+  </ul>
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
+</div>
+</nav>
+
+
+
+<body>
+<div class="container">
+    <div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+              <div class="div">
+            <div class="col 4"></div>
+            <div class="col 4">
+                {%if messages%}
+                    {%for msg in messages%}
+                       {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                             <strong>{{msg}}</strong>
+                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                         </div>
+                       {%endif%}
+                       {%if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                             <strong>{{msg}}</strong>
+                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                         </div>
+                       {%endif%}
+                    {%endfor%}
+                {%endif%}
+            </div>
+            <div class="col 4"></div>
+        </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+
+    {%block body_block%}
+
+
+
+    {%endblock%}
+</div>
+</body>
+
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</html>

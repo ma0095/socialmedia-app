@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <a href="{%url 'pic-change' request.user.users.id%}">
+                      <img src="{{request.user.users.profile_pic.url}}" class="card-img-top" alt="...">
+
+
+                </a>
+
+
+  <div class="card-body" >
+    <h5 class="card-title">{{request.user}}</h5>
+    <p class="card-text">{{request.user.users.bio}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Phone {{request.user.users.phone}}</li>
+    <li class="list-group-item">DOB : {{request.user.users.date_of_birth}}</li>
+    <li class="list-group-item">A third item</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="{%url 'profile-update' request.user.users.id%}" class="card-link">update profile</a>
+  </div>
+</div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{%endblock%}
