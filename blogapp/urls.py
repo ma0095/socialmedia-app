@@ -12,8 +12,7 @@ urlpatterns = [
     path("user/profilepic/change/<int:user_id>",views.ProfilepicChangeView.as_view(),name="pic-change"),
     path("user/profile/post",views.IndexView.as_view(),name="home"),
     path("post/comment/<int:post_id>",views.add_comment,name="add-comment"),
-
-    path("accounts/home",views.HomePageView.as_view(),name="home"),
+    path("post/like/add/<int:post_id>",views.add_like,name="add-like"),
 
 
 ]

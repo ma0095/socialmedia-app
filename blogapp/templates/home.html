@@ -33,6 +33,22 @@
         <p>posted by : {{blog.author}}</p>
         <p>created at : {{blog.posted_date}}</p>
 
+        <a href="{%url 'add-like' blog.id%}">like</a>
+        {{blog.liked_by.all.count}}
+        {{blog.get_like_count}}
+
+         <p>{{blog.get_liked_users}}</p>
+
+            {%for comment in blog.comments_set.all%}
+        <p>{{comment.user}} :</p>
+        <p>{{comment.comment}}</p>
+
+
+
+        {%endfor%}
+
+
+
         <form action="{%url 'add-comment' blog.id%}" method="post">
             {%csrf_token%}
             {{comment_form.as_p}}
