@@ -6,10 +6,24 @@ from django.urls import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
 from blogapp.models import UserProfile,Blogs,Comments
 from django.contrib import messages
+from django.utils.decorators import method_decorator
 
 
 
 # Create your views here.
+
+
+#decoretor for authenticate
+
+def signin_requied(fn):
+    def wrapper(request,*args,**kwargs):
+        if request.user.is_authenticated:
+            return fn(request,*args,**kwargs)
+        else:
+            messages.error(request,"you must login")
+            return redirect("signin")
+    return wrapper
+
 
 class SignUpView(CreateView):
     form_class=UserRegistrationForm
@@ -36,7 +50,7 @@ class LoginView(FormView):
             else:
                 return render(request,self.template_name,{"form":form})
 
-
+@method_decorator(signin_requied,name="dispatch")
 class IndexView(CreateView):
     model = Blogs
     form_class = BlogForm
@@ -57,7 +71,7 @@ class IndexView(CreateView):
         context["comment_form"]=comment_form
         return context
 
-
+@method_decorator(signin_requied,name="dispatch")
 class CreateUserProfileView(CreateView):
     model=UserProfile
     template_name = "addprofile.html"
@@ -70,8 +84,10 @@ class CreateUserProfileView(CreateView):
         self.object=form.save()
         return super().form_valid(form)
 
+
 class ViewMyprofileView(TemplateView):
     template_name = "view-profile.html"
+
 
 class PasswordResetView(FormView):
     template_name = "password-reset.html"
@@ -136,6 +152,11 @@ def add_like(request,*args,**kwargs):
     blog. liked_by.add(request.user)
     blog.save()
     return redirect("home")
+
+
+def sign_out(request,*args,**kwargs):
+    logout(request)
+    return redirect("signin")
 
 
 

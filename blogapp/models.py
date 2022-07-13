@@ -24,7 +24,7 @@ class Blogs(models.Model):
     posted_date=models.DateField(auto_now_add=True)
     liked_by=models.ManyToManyField(User)
 
-#for like count methord 2
+# this methord for count likes ,showing
     def get_like_count(self):
         like_count=self.liked_by.all().count()
         return like_count

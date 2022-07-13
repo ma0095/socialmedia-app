@@ -40,16 +40,15 @@ class PasswordRestForm(forms.Form):
     confirm_password=forms.CharField()
 
 
-class BlogForm(ModelForm):                      #postform
+class BlogForm(ModelForm):         #postform
     class Meta:
         model=Blogs
-        fields=[
-            "title",
+        fields=[          # i dont need a title for blog
             "description",
             "image"
         ]
-        widgets={"title":forms.TextInput(attrs={"class":"form-control"}),
-                 "description":forms.Textarea(attrs={"class":"form-control"}),
+        widgets={
+                 "description":forms.Textarea(attrs={"class":"form-control","placeholder":"Write something... "}),
                  "image":forms.FileInput(attrs={"class":"form-control"})
 
         }
