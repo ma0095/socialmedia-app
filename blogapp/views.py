@@ -159,6 +159,26 @@ def sign_out(request,*args,**kwargs):
     return redirect("signin")
 
 
+def follow_friend(request,*args,**kwargs):
+    friend_id=kwargs.get("user_id")
+    friend_profile=User.objects.get(id=friend_id)
+    request.user.users.following.add(friend_profile)
+    friend_profile.save()
+    messages.success(request,"you followed"+ friend_profile.user.username)
+    return redirect("home")
+
+
+
+# def remove_post(request,*args,**kwargs):
+#     img=kwargs.get("image")
+#     bimage=Blogs.objects.get("image")
+#     bimage.delete()
+#     messages.success(request, "post deleted successfully")
+#     return redirect("home")
+
+
+
+
 
 
 

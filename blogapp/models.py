@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import random
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -14,6 +15,27 @@ class UserProfile(models.Model):
     )
     gender=models.CharField(max_length=10,choices=options,default="male")
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="users")
+    following=models.ManyToManyField(User,related_name="followings",blank=True)
+
+    @property
+    def fetch_followings(self):
+        return self.following.all()
+
+    @property
+    def fetch_following_count(self):
+        return self.fetch_followings.count()
+
+    def get_invitation(self):
+#fetch all users except current user
+        all_users_profile=UserProfile.objects.all().exclude(user=self.user)
+        user_list=[userprofile.user for userprofile in all_users_profile]
+        following_list=[user for user in self.fetch_followings]
+#fetch all my followers
+#exclude my following from all users
+        invitations=[user for user in user_list if user not in following_list]
+        return invitations
+
+
 
 
 class Blogs(models.Model):
@@ -49,6 +71,8 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.comment
+
+
 
 
 

@@ -6,7 +6,7 @@
     <div class="row mt-3">
         <div class="col-4"></div>
         <div class="col-4">
-            <div class="card text-bg-secondary" style="width: 20rem;">
+            <div class="card text-bg-primary" style="width: 20rem;">
                 <a href="{%url 'pic-change' request.user.users.id%}">
                       <img src="{{request.user.users.profile_pic.url}}" class="card-img-top" alt="...">
                 </a>
@@ -18,7 +18,15 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Phone : {{request.user.users.phone}}</li>
     <li class="list-group-item">DOB : {{request.user.users.date_of_birth}}</li>
-    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">Following :  {{request.user.users.fetch_following_count}} Members
+        <p>
+
+        {%for user in request.user.users.fetch_followings%}
+        {{user}},
+        {%endfor%}
+        </p>
+
+    </li>
   </ul>
   <div class="card-body">
     <a href="{%url 'password-reset'%}" class="card-link text-light ms-2">Reset password</a>
@@ -29,6 +37,12 @@
         <div class="col-4"></div>
     </div>
 </div>
+
+
+
+
+
+
 
 
 

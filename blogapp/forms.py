@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from blogapp.models import UserProfile,Blogs,Comments
+from datetime import date
 
 
 
@@ -28,9 +29,8 @@ class LoginForm(forms.Form):
 class UserProfileForm(ModelForm):
     class Meta:
         model=UserProfile
-        exclude=("user",)
-        widget={
-            "date_of_birth":forms.DateInput(attrs={"class":"form-control","type":"date"})
+        exclude=("user","following")
+        widget={"date_of_birth":forms.DateInput(attrs={"class":"form-control","type":"date"})
         }
 
 
