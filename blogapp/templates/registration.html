@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%load static%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +8,7 @@
 
 </head>
 <body>
+
 <div class="container">
            <div class="div">
             <div class="col 4"></div>
@@ -30,25 +32,20 @@
             </div>
             <div class="col 4"></div>
         </div>
-
- <!---signup form---->
     <div class="row">
         <div class="col-2"></div>
-        <div class="col-8">
-               <div class="card text-bg-primary mb-3 mt-5 ms-5" style="max-width: 100rem;">
-  <div class="card-body">
-      <div class="div ms-5"> <h3 class="card-title ms-5"></h3></div>
+        <div class="col-8 mt-5">
 
+            <div class="card text-bg-dark"  style="width:50rem;">
+  <img src="{%static 'images/emp2.jpg'%}" class="card-img" alt="..." style="width: 100%;">
+  <div class="card-img-overlay">
+    <h5 class="card-title"></h5>
     <p class="card-text">
-
-          <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post">
                 {%csrf_token%}
                 {{form.as_p}}
-      <p class="ms-5"> <button type="submit" class="btn btn-outline-btn-dark  ms-5">Signup</button><small class="ms-3">Already have an account?</small>        <a href="{%url 'signin'%}" class="text-light ">Signin</a>
-</p>
-
+      <p class="ms-5"> <button type="submit" class="btn btn-outline-secondary  ms-5">Signup</button><small class="ms-3">Already have an account?</small>        <a href="{%url 'signin'%}" class="text-light ">Signin</a>
   </form>
-
 
     </p>
   </div>
@@ -59,20 +56,7 @@
         </div>
         <div class="col-2"></div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 </body>

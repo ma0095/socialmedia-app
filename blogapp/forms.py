@@ -22,7 +22,7 @@ class UserRegistrationForm(UserCreationForm):
 
 class LoginForm(forms.Form):
     username=forms.CharField()
-    password=forms.CharField(widget=forms.PasswordInput())
+    password=forms.CharField(widget=forms.PasswordInput)
 
 
 
@@ -30,14 +30,16 @@ class UserProfileForm(ModelForm):
     class Meta:
         model=UserProfile
         exclude=("user","following")
-        widget={"date_of_birth":forms.DateInput(attrs={"class":"form-control","type":"date"})
+        widget={"date_of_birth":forms.DateInput(attrs={"class":"form-control","type":date}),
+
         }
 
 
 class PasswordRestForm(forms.Form):
     old_password=forms.CharField(widget=forms.PasswordInput)
     new_password=forms.CharField(widget=forms.PasswordInput)
-    confirm_password=forms.CharField()
+
+
 
 
 class BlogForm(ModelForm):         #postform

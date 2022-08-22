@@ -4,221 +4,1018 @@
 {%block body_block%}
 
 
+<main>
 
-<div class="row mt-lg-3">
-    <div class="col-4"></div>
-    <div class="col-4">
-        <h1>WELCOME {{request.user}}</h1>
-    </div>
-    <div class="col-4">
+    <!-- Container START -->
+    <div class="container">
+        <div class="row g-4 mt-1">
+            <!------------------left side col-1-------------------------------->
+            <!-- Sidenav START -->
+            <div class="col-lg-3">
 
-        <div class="div"><div class="row">
-            <div class="col-6"></div>
-            <div class="col-6">
+                <!-- Advanced filter responsive toggler START -->
+                <div class="d-flex align-items-center d-lg-none">
+                    <button class="border-0 bg-transparent" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasSideNavbar" aria-controls="offcanvasSideNavbar">
+                        <i class="btn btn-primary fw-bold fa-solid fa-sliders-h"></i>
+                        <span class="h6 mb-0 fw-bold d-lg-none ms-2">My profile</span>
+                    </button>
+                </div>
+                <!-- Advanced filter responsive toggler END -->
 
-                <div class="div me-4">
+                <!-- Navbar START-->
+                <nav class="navbar navbar-expand-lg mx-0">
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSideNavbar">
+                        <!-- Offcanvas header -->
+                        <div class="offcanvas-header">
+                            <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
 
-       <!-------------- ------------ following   ------------------------  ----------------------->
-<div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-  Suggestions for you
-  </button>
-  <ul class="dropdown-menu">
-    <li>
-        <div class="following ms-2">
-                {%if request.user.users.get_invitation%}
-        {%for user in request.user.users.get_invitation%}
+                        <!-- Offcanvas body -->
+                        <div class="offcanvas-body d-block px-2 px-lg-0">
+                            <!-- Card START -->
+                            <div class="card overflow-hidden">
+                                <!-- Cover image -->
+                                <div class="h-50px"
+                                     style="background-image:url(static/images/); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+                                <!-- Card body START -->
+                                <div class="card-body pt-0">
+                                    <div class="text-center">
+                                        <!-- Avatar -->
+                                        <div class="avatar avatar-lg mt-n5 mb-3">
+                                            {%if request.user.users.profile_pic%}
+                                            <a href="#!"><img class="avatar-img rounded border border-white border-3"
+                                                              src="{{request.user.users.profile_pic.url}}"
+                                                              style="width:30%; height: 30%; " alt=""></a>
 
-           <p> <img src=" {{user.users.profile_pic.url}}" alt="" style="width:25%"> {{user.username}}
-               <a href="{%url 'follow' user.id%}">follow</a></p>
+                                        </div>
+                                        {%endif%}
+                                        <!-- Info -->
+                                        <h5 class="mb-0"><a href="#!">{{request.user}} </a></h5>
+                                        <small>Web Developer at Webestica</small>
+                                        <p class="mt-3">{{request.user.users.bio}}</p>
 
-            {%endfor%}
-        {%endif%}
+                                        <!-- User stat START -->
+                                        <div class="hstack gap-2 gap-xl-3 justify-content-center">
+                                            <!-- User stat item -->
+                                            <div>
+                                                <h6 class="mb-0">10</h6>
+                                                <small>Post</small>
+                                            </div>
+                                            <!-- Divider -->
+                                            <div class="vr"></div>
+                                            <!-- User stat item -->
+                                            <div>
+                                                <h6 class="mb-0">9</h6>
+                                                <small>Followers</small>
+                                            </div>
+                                            <!-- Divider -->
+                                            <div class="vr"></div>
+                                            <!-- User stat item -->
+                                            <div>
+                                                <h6 class="mb-0">{{request.user.users.fetch_following_count}}</h6>
+                                                <small>Following</small>
+                                            </div>
+                                        </div>
+                                        <!-- User stat END -->
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <hr>
+
+                                    <!-- Side Nav START -->
+                                    <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="my-profile.html"> <img class="me-2 h-20px fa-fw"
+                                                                                             src="assets/images/icon/home-outline-filled.svg"
+                                                                                             alt=""><span>Feed </span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="my-profile-connections.html"> <img
+                                                    class="me-2 h-20px fa-fw"
+                                                    src="assets/images/icon/person-outline-filled.svg" alt=""><span>Connections </span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="blog.html"> <img class="me-2 h-20px fa-fw"
+                                                                                       src="assets/images/icon/earth-outline-filled.svg"
+                                                                                       alt=""><span>Latest News </span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="events.html"> <img class="me-2 h-20px fa-fw"
+                                                                                         src="assets/images/icon/calendar-outline-filled.svg"
+                                                                                         alt=""><span>Events </span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="groups.html"> <img class="me-2 h-20px fa-fw"
+                                                                                         src="assets/images/icon/chat-outline-filled.svg"
+                                                                                         alt=""><span>Groups </span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="notifications.html"> <img
+                                                    class="me-2 h-20px fa-fw"
+                                                    src="assets/images/icon/notification-outlined-filled.svg"
+                                                    alt=""><span>Notifications </span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="settings.html"> <img class="me-2 h-20px fa-fw"
+                                                                                           src="assets/images/icon/cog-outline-filled.svg"
+                                                                                           alt=""><span>Settings </span></a>
+                                        </li>
+                                    </ul>
+                                    <!-- Side Nav END -->
+
+
+                                </div>
+                                <!-- Card body END -->
+                                <!-- Card footer -->
+                                <div class="card-footer text-center py-2">
+                                    <a class="btn btn-link btn-sm" href="{%url 'view-profile'%}">View Profile </a>
+                                </div>
+                            </div>
+                            <!-- Card END -->
+
+
+                        </div>
+                    </div>
+                </nav>
+                <!-- Navbar END-->
+            </div>
+            <!-- Sidenav END -->
+
+            <!-- Main content START -->
+            <div class="col-md-8 col-lg-6 vstack gap-4">
+
+
+                <!-- Story START -->
+                <div class="tiny-slider arrow-hover overflow-hidden">
+                    <div class="tns-outer" id="tns1-ow">
+                        <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide
+                            <span class="current">1 to 5</span> of 6
+                        </div>
+                        <div id="tns1-mw" class="tns-ovh">
+                            <div class="tns-inner" id="tns1-iw">
+                                <div class="tiny-slider-inner ms-n4  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal"
+                                     data-arrow="true" data-dots="true" data-loop="false" data-autoplay="false"
+                                     data-items-xl="4" data-items-lg="3" data-items-md="3" data-items-sm="3"
+                                     data-items-xs="2" data-gutter="12" data-edge="30" id="tns1"
+                                     style="transition-duration: 0s; transform: translate3d(0%, 0px, 0px);">
+
+                                    <!-- Slider items -->
+                                    <div class="tns-item tns-slide-active" id="tns1-item0">
+                                        <!-- Card add story START -->
+                                        <div class="card border border-2 border-dashed h-150px shadow-none d-flex align-items-center justify-content-center text-center">
+                                            <div>
+                                                <a class="stretched-link btn btn-light rounded-circle icon-md"
+                                                   href="#!"><i class="bi bi-plus-circle-dotted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
+  <path d="M8 0c-.176 0-.35.006-.523.017l.064.998a7.117 7.117 0 0 1 .918 0l.064-.998A8.113 8.113 0 0 0 8 0zM6.44.152c-.346.069-.684.16-1.012.27l.321.948c.287-.098.582-.177.884-.237L6.44.153zm4.132.271a7.946 7.946 0 0 0-1.011-.27l-.194.98c.302.06.597.14.884.237l.321-.947zm1.873.925a8 8 0 0 0-.906-.524l-.443.896c.275.136.54.29.793.459l.556-.831zM4.46.824c-.314.155-.616.33-.905.524l.556.83a7.07 7.07 0 0 1 .793-.458L4.46.824zM2.725 1.985c-.262.23-.51.478-.74.74l.752.66c.202-.23.418-.446.648-.648l-.66-.752zm11.29.74a8.058 8.058 0 0 0-.74-.74l-.66.752c.23.202.447.418.648.648l.752-.66zm1.161 1.735a7.98 7.98 0 0 0-.524-.905l-.83.556c.169.253.322.518.458.793l.896-.443zM1.348 3.555c-.194.289-.37.591-.524.906l.896.443c.136-.275.29-.54.459-.793l-.831-.556zM.423 5.428a7.945 7.945 0 0 0-.27 1.011l.98.194c.06-.302.14-.597.237-.884l-.947-.321zM15.848 6.44a7.943 7.943 0 0 0-.27-1.012l-.948.321c.098.287.177.582.237.884l.98-.194zM.017 7.477a8.113 8.113 0 0 0 0 1.046l.998-.064a7.117 7.117 0 0 1 0-.918l-.998-.064zM16 8a8.1 8.1 0 0 0-.017-.523l-.998.064a7.11 7.11 0 0 1 0 .918l.998.064A8.1 8.1 0 0 0 16 8zM.152 9.56c.069.346.16.684.27 1.012l.948-.321a6.944 6.944 0 0 1-.237-.884l-.98.194zm15.425 1.012c.112-.328.202-.666.27-1.011l-.98-.194c-.06.302-.14.597-.237.884l.947.321zM.824 11.54a8 8 0 0 0 .524.905l.83-.556a6.999 6.999 0 0 1-.458-.793l-.896.443zm13.828.905c.194-.289.37-.591.524-.906l-.896-.443c-.136.275-.29.54-.459.793l.831.556zm-12.667.83c.23.262.478.51.74.74l.66-.752a7.047 7.047 0 0 1-.648-.648l-.752.66zm11.29.74c.262-.23.51-.478.74-.74l-.752-.66c-.201.23-.418.447-.648.648l.66.752zm-1.735 1.161c.314-.155.616-.33.905-.524l-.556-.83a7.07 7.07 0 0 1-.793.458l.443.896zm-7.985-.524c.289.194.591.37.906.524l.443-.896a6.998 6.998 0 0 1-.793-.459l-.556.831zm1.873.925c.328.112.666.202 1.011.27l.194-.98a6.953 6.953 0 0 1-.884-.237l-.321.947zm4.132.271a7.944 7.944 0 0 0 1.012-.27l-.321-.948a6.954 6.954 0 0 1-.884.237l.194.98zm-2.083.135a8.1 8.1 0 0 0 1.046 0l-.064-.998a7.11 7.11 0 0 1-.918 0l-.064.998zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+</svg></i></a>
+                                                <h6 class="mt-2 mb-0 small">Post a Story</h6>
+                                            </div>
+                                        </div>
+                                        <!-- Card add story END -->
+                                    </div>
+
+                                    <!-- Slider items -->   <!---------story item 1----->
+                                    <div class="tns-item tns-slide-active" id="tns1-item1">
+                                        <!-- Card START -->
+                                        <div class="card card-overlay-bottom border-0 position-relative h-150px"
+                                             style="background-image:url(assets/images/post/1by1/02.jpg); background-position: center left; background-size: cover;">
+                                            <div class="card-img-overlay d-flex align-items-center p-2">
+                                                <div class="w-100 mt-auto">
+                                                    <!-- Name -->
+                                                    <a href="#!" class="stretched-link text-white small">Judy Nguyen</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card END -->
+                                    </div>
+
+                                    <!-- Slider items -->  <!---------story item 2----->
+                                    <div class="tns-item tns-slide-active" id="tns1-item2">
+                                        <!-- Card START -->
+                                        <div class="card card-overlay-bottom border-0 position-relative h-150px"
+                                             style="background-image:url(assets/images/post/1by1/03.jpg); background-position: center left; background-size: cover;">
+                                            <div class="card-img-overlay d-flex align-items-center p-2">
+                                                <div class="w-100 mt-auto">
+                                                    <!-- Name -->
+                                                    <a href="#!" class="stretched-link text-white small">Samuel
+                                                        Bishop</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card END -->
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+<!---------------------story-scroling ------
+
+                        <div class="tns-nav" aria-label="Carousel Pagination">
+                            <button type="button" data-nav="0" aria-controls="tns1" style=""
+                                    aria-label="Carousel Page 1 (Current Slide)" class="tns-nav-active"></button>
+                            <button type="button" data-nav="1" tabindex="-1" aria-controls="tns1" style=""
+                                    aria-label="Carousel Page 2"></button>
+                            <button type="button" data-nav="2" tabindex="-1" aria-controls="tns1" style="display:none"
+                                    aria-label="Carousel Page 3"></button>
+                            <button type="button" data-nav="3" tabindex="-1" aria-controls="tns1" style="display:none"
+                                    aria-label="Carousel Page 4"></button>
+                            <button type="button" data-nav="4" tabindex="-1" aria-controls="tns1" style="display:none"
+                                    aria-label="Carousel Page 5"></button>
+                            <button type="button" data-nav="5" tabindex="-1" aria-controls="tns1" style="display:none"
+                                    aria-label="Carousel Page 6"></button>
+                        </div>
+                        <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0">
+                            <button type="button" data-controls="prev" tabindex="-1" aria-controls="tns1" disabled=""><i
+                                    class="fa-solid fa-chevron-left"></i></button>
+                            <button type="button" data-controls="next" tabindex="-1" aria-controls="tns1"><i
+                                    class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+  --------------------------------------------------------->
+
+                    </div>
+                </div>
+                <!-- Story END -->
+
+
+<!--------------------------------post writting form-start------------------------------------------------------------------------------------------>
+
+                <!-- Share feed START -->
+                <div class="card card-body">
+                    <div class="d-flex mb-3">
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xs me-2" style="width:3rem;height:3rem">
+                            {%if request.user.users.profile_pic%}
+                            <a href="{%url 'view-profile'%}"> <img class="avatar-img rounded-circle"
+                                                                   src="{{request.user.users.profile_pic.url}}" alt=""
+                                                                   style="width:100%;height:100%"> </a>
+                        </div>
+                        {%endif%}
+
+                        <!-- Post input -->
+                        <form class="w-100">
+								<textarea class="form-control pe-4 border-0" rows="2" data-autoresize="" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                      placeholder="Share your thoughts..."></textarea>
+                        </form>
+                    </div>
+
+
+                    <!--------modal start---------------------------->
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <div style="width:30% ">
+                                        <a class="navbar-brand text-" href="{%url 'view-profile'%}">
+                                            {%if request.user.users.profile_pic%}
+                                            <span>  <img src="{{request.user.users.profile_pic.url}}"
+                                                         class="img-thumbnail" alt="" style="width:30%;height:10%">
+            								{{request.user}}
+											</span>
+
+
+                                            {%endif%}
+                                        </a>
+                                    </div>
+                                    <h5 class="modal-title ms-5" id="exampleModalLabel"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        {%csrf_token%}
+                                        {{form.as_p}}
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary ">Post</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Share feed toolbar START -->
+                    <ul class="nav nav-pills nav-stack small fw-normal">
+                        <li class="nav-item">
+                            <a class="nav-link bg-light py-1 px-2 mb-0" href="#!" data-bs-toggle="modal"
+                               data-bs-target="#feedActionPhoto"> <i class="bi bi-image-fill text-success pe-2"></i>Photo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-light py-1 px-2 mb-0" href="#!" data-bs-toggle="modal"
+                               data-bs-target="#feedActionVideo"> <i class="bi bi-camera-reels-fill text-info pe-2"></i>Video</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link bg-light py-1 px-2 mb-0" data-bs-toggle="modal"
+                               data-bs-target="#modalCreateEvents"> <i
+                                    class="bi bi-calendar2-event-fill text-danger pe-2"></i>Event </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-light py-1 px-2 mb-0" href="#!" data-bs-toggle="modal"
+                               data-bs-target="#modalCreateFeed"> <i
+                                    class="bi bi-emoji-smile-fill text-warning pe-2"></i>Feeling /Activity</a>
+                        </li>
+                        <li class="nav-item dropdown ms-lg-auto">
+                            <a class="nav-link bg-light py-1 px-2 mb-0" href="#" id="feedActionShare"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+
+				 </div>
+                <!-- Share feed END -->
+                <!------------------------------------------------post writting form end----------------------------->
+
+                <!-- Card feed item START -->
+                {%for blog in blogs%}
+
+                <div class="card">
+
+                    <!-- Card header START -->
+                    <div class="card-header border-0 pb-0">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <!-- Avatar -->
+                                <div class="avatar avatar-story me-2 height: 3rem; width: 3rem;">
+                                    <a href="#!"> <img class="avatar-img rounded-circle"
+                                                       src="{{blog.author.users.profile_pic.url}}" alt=""
+                                                       style="width:3rem; height: 3rem;"> </a>
+                                </div>
+                                <!-- Info -->
+                                <div>
+                                    <div class="nav nav-divider">
+                                        <h6 class="nav-item card-title mb-0"><a href="#!"> {{blog.author}}</a></h6>
+                                        <small><span class="nav-item small ms-4">. {{blog.posted_date}}</span></small>
+                                    </div>
+                                    <!--						<p class="mb-0 small">Web Developer at Webestica</p>-->
+                                </div>
+                            </div>
+
+                            <!--------------------- Card feed action dropdown START --------------------->
+                            <div class="dropdown">
+                                <a class="text-secondary btn btn-secondary-soft-hover py-1 px-2"
+                                   id="cardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-arrow-down-circle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+</svg></i>
+                                </a>
+                                <!-- Card feed action dropdown menu -->
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction">
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save
+                                        post</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-person-x fa-fw pe-2"></i>Unfollow
+                                        lori ferguson </a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-x-circle fa-fw pe-2"></i>Hide
+                                        post</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-slash-circle fa-fw pe-2"></i>Block</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report
+                                        post</a></li>
+                                </ul>
+                            </div>
+                            <!-- Card feed action dropdown END -->
+                        </div>
+                    </div>
+                    <!-- Card header END -->
+                    <!-- Card body START -->
+                    <div class="card-body">
+                        <p>{{blog.description}}</p>
+                        <!-- Card img -->
+                        {%if blog.image%}
+                        <img class="card-img" src="{{blog.image.url}}" alt="">
+                        <!-- Feed react START -->
+                        <ul class="nav nav-stack py-3 small">
+                            <li class="nav-item">
+
+
+<!------------------------------liked users list  accordian------------------------------>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                             <a class="nav-link active" href="#!"> <i class="bi bi-hand-thumbs-up-fill pe-1"></i>
+                                    {{blog.get_like_count}} Likes</a>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                         aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+                                        <div class="accordion-body">
+                                            <p>{{blog.get_liked_users}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+<!-------------liked users list  accordian end----->
+                            </li>
+
+                            <!-----------------------like and comment button ,accordian------------------------------------>
+
+                            <li class="list-group-item mt-5">
+
+                                <div class="card-body ms-5">
+
+
+                                    <a href="{%url 'add-like' blog.id%}" class="card-link"><i
+                                            class="bi bi-hand-thumbs-up">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                             fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                                        </svg>
+                                        Like</i></a>
+
+                                    <!------------COMMENT--button--link------------------->
+                                    <button class="btn btn-link ms-5" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                        <i class="bi bi-chat-square">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-chat-square" viewBox="0 0 16 16">
+                                                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                            </svg>
+                                            Comment</i>
+                                    </button>
+                                    <div id="collapseThree" class="accordion-collapse collapse"
+                                         aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+
+                    <!-------------------------comment form-------------------------------------------------------------------------------------------------------->
+                                        <div class="accordion-body">
+
+                                            <div class="comment-form mt-2">
+
+                                                <form action="{%url 'add-comment' blog.id%}" method="post">
+                                                    {%csrf_token%}
+                                                    {{comment_form.as_p}}
+                                                    <input class="ms-5" type="submit" value="Post">
+                                                </form>
+
+
+                                            </div>
+
+                                            <!---------commented users details------------->
+                                            <div class="div mt-2 text-primary">
+
+                                                {%for comment in blog.comments_set.all%}
+
+                                                <p><span>{{comment.user}} :</span><span>  {{comment.comment}}</span></p>
+
+                                                {%endfor%}
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!"> <i class="bi bi-chat-fill pe-1"></i>Comments (12)</a>
+                            </li>
+
+                            <!------------ Card share action START ------------>
+                            <li class="nav-item dropdown ms-sm-auto">
+                                <a class="nav-link mb-0" href="#" id="cardShareAction" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <i class="bi bi-reply-fill flip-horizontal ps-1"></i>Share (3)
+                                </a>
+
+                                <!-- Card share action dropdown menu -->
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardShareAction">
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-2"></i>Send
+                                        via Direct Message</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i
+                                            class="bi bi-bookmark-check fa-fw pe-2"></i>Bookmark </a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-link fa-fw pe-2"></i>Copy
+                                        link to post</a></li>
+                                    <li><a class="dropdown-item" href="#"> <i class="bi bi-share fa-fw pe-2"></i>Share
+                                        post via …</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"> <i
+                                            class="bi bi-pencil-square fa-fw pe-2"></i>Share to News Feed</a></li>
+                                </ul>
+                            </li>
+                            <!-- Card share action END -->
+                        </ul>
+                        <!-- Feed react END -->
+
+                        <!-- Add comment --------------------------------------->
+                        <div class="d-flex mb-3">
+                            <!-- Avatar -->
+                            <div class="avatar avatar-xs me-2" style="width:5%;height:5%">
+                                 {%if request.user.users.profile_pic%}
+                                <a  href="{%url 'view-profile'%}"> <img class="avatar-img rounded-circle" src="{{request.user.users.profile_pic.url}}"
+                                                   alt="" style="width:100%;height:100%"> </a>
+
+                            </div>
+                                {%endif%}
+
+   <!----------------------------------- Comment box  ----------->
+                            <form class="w-100">
+                                <textarea data-autoresize="" class="form-control pe-4 bg-light" rows="1"
+                                          placeholder="Add a comment..."></textarea>
+                            </form>
+
+                        </div>
+
+  <!-------------------------------------------------------comment box end ---------------------------------->
+
+
+
+
+                        <!-- Comment wrap START -->
+                        <ul class="comment-wrap list-unstyled">
+                            <!-- Comment item START -->
+                            <li class="comment-item">
+                                <div class="d-flex position-relative">
+                                    <!-- Avatar -->
+                                    <div class="avatar avatar-xs">
+                                        <a href="#!"><img class="avatar-img rounded-circle"
+                                                          src="assets/images/avatar/05.jpg" alt=""></a>
+                                    </div>
+                                    <div class="ms-2">
+                                        <!-- Comment by -->
+                                        <div class="bg-light rounded-start-top-0 p-3 rounded">
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="mb-1"><a href="#!"> Frances Guerrero </a></h6>
+                                                <small class="ms-2">5hr</small>
+                                            </div>
+                                            <p class="small mb-0">Removed demands expense account in outward tedious do.
+                                                Particular way thoroughly unaffected projection.</p>
+                                        </div>
+                                        <!-- Comment react -->
+                                        <ul class="nav nav-divider py-2 small">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#!"> Like (3)</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#!"> Reply</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#!"> View 5 replies</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Comment item nested START -->
+                                <ul class="comment-item-nested list-unstyled">
+                                    <!-- Comment item START -->
+                                    <li class="comment-item">
+                                        <div class="d-flex">
+                                            <!-- Avatar -->
+                                            <div class="avatar avatar-xs">
+                                                <a href="#!"><img class="avatar-img rounded-circle"
+                                                                  src="assets/images/avatar/06.jpg" alt=""></a>
+                                            </div>
+                                            <!-- Comment by -->
+                                            <div class="ms-2">
+                                                <div class="bg-light p-3 rounded">
+                                                    <div class="d-flex justify-content-between">
+                                                        <h6 class="mb-1"><a href="#!"> Lori Stevens </a></h6>
+                                                        <small class="ms-2">2hr</small>
+                                                    </div>
+                                                    <p class="small mb-0">See resolved goodness felicity shy civility
+                                                        domestic had but Drawings offended yet answered Jennings
+                                                        perceive.</p>
+                                                </div>
+                                                <!-- Comment react -->
+                                                <ul class="nav nav-divider py-2 small">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#!"> Like (5)</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#!"> Reply</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- Comment item END -->
+                                    <!-- Comment item START -->
+                                    <li class="comment-item">
+                                        <div class="d-flex">
+                                            <!-- Avatar -->
+                                            <div class="avatar avatar-story avatar-xs">
+                                                <a href="#!"><img class="avatar-img rounded-circle"
+                                                                  src="assets/images/avatar/07.jpg" alt=""></a>
+                                            </div>
+                                            <!-- Comment by -->
+                                            <div class="ms-2">
+                                                <div class="bg-light p-3 rounded">
+                                                    <div class="d-flex justify-content-between">
+                                                        <h6 class="mb-1"><a href="#!"> Billy Vasquez </a></h6>
+                                                        <small class="ms-2">15min</small>
+                                                    </div>
+                                                    <p class="small mb-0">Wishing calling is warrant settled was
+                                                        lucky.</p>
+                                                </div>
+                                                <!-- Comment react -->
+                                                <ul class="nav nav-divider py-2 small">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#!"> Like</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#!"> Reply</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- Comment item END -->
+                                </ul>
+                                <!-- Load more replies -->
+                                <a href="#!" role="button"
+                                   class="btn btn-link btn-link-loader btn-sm text-secondary d-flex align-items-center mb-3 ms-5"
+                                   data-bs-toggle="button" aria-pressed="true">
+                                    <div class="spinner-dots me-2">
+                                        <span class="spinner-dot"></span>
+                                        <span class="spinner-dot"></span>
+                                        <span class="spinner-dot"></span>
+                                    </div>
+                                    Load more replies
+                                </a>
+                                <!-- Comment item nested END -->
+                            </li>
+                            <!-- Comment item END -->
+                        </ul>
+                        <!-- Comment wrap END -->
+                    </div>
+                    <!-- Card body END -->
+
+                    <!---------------------------------------------- Card footer START -------------------------------------------------->
+                    <div class="card-footer border-0 pt-0">
+                        <!-- Load more comments -->
+                        <a href="#!" role="button"
+                           class="btn btn-link btn-link-loader btn-sm text-secondary d-flex align-items-center"
+                           data-bs-toggle="button" aria-pressed="true">
+                            <div class="spinner-dots me-2">
+                                <span class="spinner-dot"></span>
+                                <span class="spinner-dot"></span>
+                                <span class="spinner-dot"></span>
+                            </div>
+                            Load more comments
+                        </a>
+                    </div>
+                    <!-- Card footer END -->
+                </div>
+                {%endif%}
+                {%endfor%}
+                <!-- Card feed item END ----------------------------------------------------------------------------------------------------->
+
+
+
+
+                <!-- Load more button START -->
+                <a href="#!" role="button" class="btn btn-loader btn-primary-soft" data-bs-toggle="button"
+                   aria-pressed="true">
+                    <span class="load-text"> Load more </span>
+                    <div class="load-icon">
+                        <div class="spinner-grow spinner-grow-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Load more button END -->
+
+            </div>
+            <!-- Main content END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!------------------------------------------------- Right sidebar START ------------------------------------------------>
+            <div class="col-lg-3">
+                <div class="row g-4 mt-1">
+                    <!-- Card follow START -->
+                    <div class="col-sm-6 col-lg-12">
+                        <div class="card">
+                            <!-- Card header START -->
+                            <div class="card-header pb-0 border-0">
+                                <h5 class="card-title mb-0">Suggestions for you</h5>
+                            </div>
+                            <!-- Card header END -->
+                            <!-- Card body START -->
+                            <div class="card-body" >
+                                <!-- Connection item START -->
+                                {%if request.user.users.get_invitation%}
+                                {%for user in request.user.users.get_invitation%}
+                                <div class="hstack gap-2 mb-3" >
+
+                                    <!-- Avatar -->
+
+                                    <div class="avatar ms-2"  style="width:40px;height:40px;">
+                                        <a href="">
+                                             <img class="avatar-img rounded-circle me-2"
+                                                src=" {{user.users.profile_pic.url}}" alt="" style="width:100%; height:100%; ">
+                                        </a>
+                                    </div>
+
+                                    <!-- Title -->
+                                    <div class="overflow-hidden">
+                                        <a class="h6 mb-0" href="#!">{{user.username}}</a>
+
+                                    </div>
+
+                                    <!-- Button -->
+                                    <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="{%url 'follow' user.id%}">
+                                        <i class="bi bi-plus-circle "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                        </svg></i></a>
+
+                                </div>
+                                  {%endfor%}
+                                    {%endif%}
+
+                                <!-- Card body END -->
+                            </div>
+                        </div>
+
+
+                        <!-- Right sidebar END -->
+
+                    </div> <!-- Row END -->
+                </div>
+                <!-- Container END -->
+
+</main>
+
+
+<div class="welcome">
+    <div class="row  mt-lg-3">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h1>WELCOME {{request.user}}</h1>
         </div>
+        <div class="col-4">
 
 
-    </li>
-      <li><hr class="dropdown-divider"></li>
-      <!--------------
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-      ------------>
+            <div class="div">
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-6">
 
-  </ul>
-</div>
-</div>
+                        <div class="div me-4">
 
-            </div></div></div>
+                            <!-------------- ------------ following   ------------------------  ----------------------->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Suggestions for you
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="following ms-2">
+                                            {%if request.user.users.get_invitation%}
+                                            {%for user in request.user.users.get_invitation%}
 
+                                            <p><img src=" {{user.users.profile_pic.url}}" alt="" style="width:25%">
+                                                {{user.username}}
+                                                <a href="{%url 'follow' user.id%}">follow</a></p>
+
+                                            {%endfor%}
+                                            {%endif%}
+                                        </div>
+
+
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <!--------------
+                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                    ------------>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<!------post writting form------->
+    <!------post writting form------->
 
-<div class="row">
-    <div class="col-4"></div>
-    <div class="col-4">
-
-<!-- Button trigger modal -->
-<button type="button"  class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Post something
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-
-          <div style="width:30% ">
-    <a class="navbar-brand text-"  href="{%url 'view-profile'%}">
-    {%if request.user.users.profile_pic%}
-        <span>  <img src="{{request.user.users.profile_pic.url}}" class="img-thumbnail" alt="" style="width:30%;height:10%">
-            {{request.user}}
-        </span>
-
-
-    {%endif%}
-</a>
- </div>
-        <h5 class="modal-title ms-5" id="exampleModalLabel"> </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-             <form action="" method="post" enctype="multipart/form-data">
-            {%csrf_token%}
-            {{form.as_p}}
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary ">Post</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-    </div>
-    <div class="col-4"></div>
-</div>
-
-<!-------post showing section-------------->
-
-{%for blog in blogs%}
-
-<div class="container mt-5">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
 
-            <div class="card" style="width: 30rem;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <input type="text" placeholder="Post something">
+            </button>
 
-                <div class="card-body">
-                    <p><img src="{{blog.author.users.profile_pic.url}}" class="img-thumbnail" alt="" style="width:10%;height:5%">
-                        <strong>{{blog.author}}</strong></p>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <div style="width:30% ">
+                                <a class="navbar-brand text-" href="{%url 'view-profile'%}">
+                                    {%if request.user.users.profile_pic%}
+                                    <span>  <img src="{{request.user.users.profile_pic.url}}" class="img-thumbnail"
+                                                 alt="" style="width:30%;height:10%">
+            {{request.user}}
+        </span>
+
+
+                                    {%endif%}
+                                </a>
+                            </div>
+                            <h5 class="modal-title ms-5" id="exampleModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {%csrf_token%}
+                                {{form.as_p}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary ">Post</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+    <!-------post showing section-------------->
+
+    {%for blog in blogs%}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+
+                <div class="card" style="width: 30rem;">
+
+                    <div class="card-body">
+                        <p><img src="{{blog.author.users.profile_pic.url}}" class="img-thumbnail" alt=""
+                                style="width:10%;height:5%">
+                            <strong>{{blog.author}}</strong></p>
                         <p class="card-text"><small class="text-muted">{{blog.posted_date}}</small></p>
                         <p class="card-text"> {{blog.description}}</p>
 
-      {%if blog.image%}
+                        {%if blog.image%}
 
-  <img src="{{blog.image.url}}" class="card-img-top" alt="...">
+                        <img src="{{blog.image.url}}" class="card-img-top" alt="...">
 
-  <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush">
 
-      <!---------liked users details----------->
-    <li class="list-group-item">
+                            <!---------liked users details----------->
+                            <li class="list-group-item">
 
-        <div class="card-body ">
+                                <div class="card-body ">
 
-            <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-               <small> {{blog.get_like_count}} Likes</small>
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
-              <div class="accordion-body">
-                    <p>{{blog.get_liked_users}}</p>
-              </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                <small> {{blog.get_like_count}} Likes</small>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                             aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+                                            <div class="accordion-body">
+                                                <p>{{blog.get_liked_users}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li>
+
+                            <!---------LIKE---button--link--------------->
+                            <li class="list-group-item">
+
+                                <div class="card-body ms-5">
+
+
+                                    <a href="{%url 'add-like' blog.id%}" class="card-link"><i
+                                            class="bi bi-hand-thumbs-up">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                             fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                                        </svg>
+                                        Like</i></a>
+
+                                    <!------------COMMENT--button--link------------------->
+                                    <button class="btn btn-link ms-5" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                        <i class="bi bi-chat-square">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-chat-square" viewBox="0 0 16 16">
+                                                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                            </svg>
+                                            Comment</i>
+                                    </button>
+                                    <div id="collapseThree" class="accordion-collapse collapse"
+                                         aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+
+                                        <!----------comment form---------------------->
+                                        <div class="accordion-body">
+
+                                            <div class="comment-form mt-2">
+
+                                                <form action="{%url 'add-comment' blog.id%}" method="post">
+                                                    {%csrf_token%}
+                                                    {{comment_form.as_p}}
+                                                    <input class="ms-5" type="submit" value="Post">
+                                                </form>
+
+
+                                            </div>
+
+                                            <!---------commented users details------------->
+                                            <div class="div mt-2 text-primary">
+
+                                                {%for comment in blog.comments_set.all%}
+
+                                                <p><span>{{comment.user}} :</span><span>  {{comment.comment}}</span></p>
+
+                                                {%endfor%}
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-4"></div>
             </div>
-          </div>
-    </li>
-
-<!---------LIKE---button--link--------------->
-    <li class="list-group-item">
-
-        <div class="card-body ms-5">
-
-
-            <a href="{%url 'add-like' blog.id%}" class="card-link"><i class="bi bi-hand-thumbs-up"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-  <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
-</svg> Like</i></a>
-
-<!------------COMMENT--button--link------------------->
-               <button class="btn btn-link ms-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-           <i class="bi bi-chat-square"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-square" viewBox="0 0 16 16">
-  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-</svg> Comment</i>
-          </button>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
-
-  <!----------comment form---------------------->
-          <div class="accordion-body">
-
-              <div class="comment-form mt-2">
-
-                          <form action="{%url 'add-comment' blog.id%}" method="post">
-            {%csrf_token%}
-            {{comment_form.as_p}}
-            <input class="ms-5" type="submit" value="Post">
-        </form>
-
-
-              </div>
-
-  <!---------commented users details------------->
-              <div class="div mt-2 text-primary">
-
-                                      {%for comment in blog.comments_set.all%}
-
-            <p><span>{{comment.user}} :</span><span>  {{comment.comment}}</span></p>
+        </div>
+        {%endif%}
 
         {%endfor%}
 
-              </div>
 
-
-          </div></div>
-
-
-  </div>
-       </li>
-
-
-  </ul>
-
-</div></div>
-        <div class="col-4"></div>
-    </div>
-</div>
-{%endif%}
-
-    {%endfor%}
-
-
-
-
-
-
-
-
-
-
-
-
-
-{%endblock%}
+        {%endblock%}

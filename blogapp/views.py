@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 
 
 
+
 # Create your views here.
 
 
@@ -56,13 +57,11 @@ class IndexView(CreateView):
     form_class = BlogForm
     template_name = "home.html"
     success_url = reverse_lazy("home")
-
     def form_valid(self, form):
         form.instance.author=self.request.user
         self.object=form.save()
         messages.success(self.request,"post has been saved")
         return super().form_valid(form)
-
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         blogs=Blogs.objects.all().order_by("-posted_date")
@@ -84,11 +83,11 @@ class CreateUserProfileView(CreateView):
         self.object=form.save()
         return super().form_valid(form)
 
-
+@method_decorator(signin_requied,name="dispatch")
 class ViewMyprofileView(TemplateView):
     template_name = "view-profile.html"
 
-
+@method_decorator(signin_requied,name="dispatch")
 class PasswordResetView(FormView):
     template_name = "password-reset.html"
     form_class = PasswordRestForm
@@ -97,11 +96,10 @@ class PasswordResetView(FormView):
         form=self.form_class(request.POST)
         if form.is_valid():
             oldpassword=form.cleaned_data.get("old_password")
-            password1=form.cleaned_data.get("new_password")
-            password2=form.cleaned_data.get("confirm_password")
+            password1=form.cleaned_data.get("confirm_password")
             user=authenticate(request,username=request.user.username,password=oldpassword)
             if user:
-                user.set_password(password2)
+                user.set_password(password1)
                 user.save()
                 messages.success(request,"password changed")
                 return redirect("signin")
@@ -109,7 +107,7 @@ class PasswordResetView(FormView):
                 messages.error(request,"invalid input")
                 return render(request,self.template_name,{"form":form})
 
-
+@method_decorator(signin_requied,name="dispatch")
 class ProfileUpdateView(UpdateView):
     model=UserProfile
     form_class=UserProfileForm
@@ -122,6 +120,7 @@ class ProfileUpdateView(UpdateView):
         self.object=form.save()
         return super().form_valid(form)
 
+@method_decorator(signin_requied,name="dispatch")
 class ProfilepicChangeView(UpdateView):
     model = UserProfile
     form_class = ProfilePicUpdateForm
@@ -134,7 +133,7 @@ class ProfilepicChangeView(UpdateView):
         self.object=form.save()
         return super().form_valid(form)
 
-
+@signin_requied
 def add_comment(request,*args,**kwargs):
     if request.method=="POST":
         blog_id=kwargs.get("post_id")
@@ -145,7 +144,7 @@ def add_comment(request,*args,**kwargs):
         messages.success(request,"comment posted")
         return redirect("home")
 
-
+@signin_requied
 def add_like(request,*args,**kwargs):
     blog_id=kwargs.get("post_id")
     blog=Blogs.objects.get(id=blog_id)
@@ -153,7 +152,7 @@ def add_like(request,*args,**kwargs):
     blog.save()
     return redirect("home")
 
-
+@signin_requied
 def sign_out(request,*args,**kwargs):
     logout(request)
     return redirect("signin")
@@ -164,7 +163,6 @@ def follow_friend(request,*args,**kwargs):
     friend_profile=User.objects.get(id=friend_id)
     request.user.users.following.add(friend_profile)
     friend_profile.save()
-    messages.success(request,"you followed"+ friend_profile.user.username)
     return redirect("home")
 
 
@@ -175,8 +173,8 @@ def follow_friend(request,*args,**kwargs):
 #     bimage.delete()
 #     messages.success(request, "post deleted successfully")
 #     return redirect("home")
-
-
+#
+#
 
 
 
